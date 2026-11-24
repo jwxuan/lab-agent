@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "Vue.volar",
+    "esbenp.prettier-vscode",
+    "charliermarsh.ruff",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
