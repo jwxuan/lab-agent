@@ -2,10 +2,10 @@ from sqlalchemy.orm import Session
 
 from app.common.exceptions import BusinessException
 from app.models.user import User
-from app.schemas.auth import LoginRequest, LoginResponse
+from app.schemas.auth import LoginRequest, LoginResponse, RegisterRequest
 from app.schemas.user import UserResponse
 from app.utils.jwt import create_access_token
-from app.utils.password import verify_password
+from app.utils.password import hash_password, verify_password
 
 
 def login(db: Session, data: LoginRequest):
@@ -20,3 +20,21 @@ def login(db: Session, data: LoginRequest):
     # 创建token
     token = create_access_token(user.id)
     return LoginResponse(token=token, user=UserResponse.model_validate(user))
+
+
+def register(db: Session, data: RegisterRequest) -> None:
+    exists = db.query(User).filter(User.username == data.username).first()
+
+    if exists:
+        raise BusinessException(code=10102, message="账号已存在")
+
+    user = User(
+        username=data.username,
+        password=hash_password(data.password),
+        name=data.name or data.username,
+        role="student",
+        status=1,
+    )
+    db.add(user)
+    db.commit()
+    db.refresh(user)
