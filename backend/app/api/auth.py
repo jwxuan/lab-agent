@@ -1,9 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
+from app.common.exceptions import BusinessException
+from app.common.response import Response
 from app.database import get_db
 from app.models.user import User
-from app.schemas.auth import LoginRequest
+from app.schemas.auth import LoginRequest, LoginResponse
 from app.schemas.user import UserResponse
 from app.utils.jwt import create_access_token
 from app.utils.password import verify_password
@@ -17,17 +19,13 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
 
     # 判断账号和密码是否正确
     if not user or not verify_password(data.password, user.password):
-        return {"code": 10101, "message": "账号或密码错误"}
+        raise BusinessException(code=10101, message="账号或密码错误")
     # 验证账号的状态
     if user.status != 1:
-        return {"code": 403, "message": "账号已被禁用"}
+        raise BusinessException(code=10102, message="账号或密码错误")
     # 创建token
     token = create_access_token(user.id)
-    return {
-        "code": 0,
-        "message": "操作成功",
-        "data": {
-            "token": token,
-            "user": UserResponse.model_validate(user),
-        },
-    }
+    return Response.success(
+        message="登录成功",
+        data=LoginResponse(token=token, user=UserResponse.model_validate(user)),
+    )
