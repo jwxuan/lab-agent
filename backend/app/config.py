@@ -1,0 +1,22 @@
+from functools import lru_cache
+from pathlib import Path
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+BASE_DIR = Path(__file__).resolve().parent.parent  # 后端项目的根路径
+
+
+class Settings(BaseSettings):
+    DATABASE_URL: str
+
+    model_config = SettingsConfigDict(
+        env_file=BASE_DIR / ".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
+
+
+# 使用 lru_cache 缓存实例，避免每次请求都重新读取磁盘上的 .env 文件
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()  # type: ignore[call-arg]

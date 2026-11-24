@@ -1,0 +1,87 @@
+{
+  "cSpell.words": [
+    "autoflush",
+    "fastapi",
+    "onupdate",
+    "pymysql",
+    "sessionmaker",
+    "sqlalchemy"
+  ],
+  "cSpell.ignorePaths": [
+    // 1. Python 虚拟环境（涵盖主流命名）
+    ".venv/**",
+    "venv/**",
+    "env/**",
+    ".virtualenv/**",
+
+    // 2. Python 字节码缓存与编译产物
+    "**/__pycache__/**",
+    "**/*.pyc",
+    "**/*.pyo",
+    "**/*.pyd",
+    ".Python",
+    "build/**",
+    "dist/**",
+    "*.egg-info/**",
+
+    // 3. 依赖锁文件与包管理缓存（包含大量哈希值）
+    "poetry.lock",
+    "uv.lock",
+    "Pipfile.lock",
+    "pdm.lock",
+    "requirements*.txt",
+
+    // 4. 测试、类型检查与代码格式化工具缓存
+    ".pytest_cache/**",
+    ".mypy_cache/**",
+    ".ruff_cache/**",
+    ".tox/**",
+    ".coverage",
+    "htmlcov/**",
+
+    // 5. FastAPI / Web 常见目录（数据库迁移版本、本地存储、静态文档）
+    "alembic/versions/**",
+    "migrations/versions/**",
+    "static/**",
+    "media/**",
+    "uploads/**",
+    "logs/**",
+    "*.log",
+    "*.sqlite3",
+    "*.db",
+
+    // 6. 环境配置与编辑器/Git 目录
+    ".env",
+    ".env.*",
+    ".git/**",
+    ".vscode/**",
+    ".idea/**",
+    
+    //7. ignore 及 工程化文件
+    ".gitignore",
+    ".dockerignore",
+    "pyproject.toml",
+  ],
+  // 开启自动导入补全
+  "python.analysis.autoImportCompletions": true,
+  "python.languageServer": "Pylance",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.defaultColorDecorators": "auto",
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    // 自动整理导入、删除没用的 import、排序（推荐搭配 ruff）
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "python.defaultInterpreterPath": "/.venv/bin/python",
+  "mypy-type-checker.interpreter": [
+    "/.venv/bin/python"
+  ]
+}
