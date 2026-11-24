@@ -6,5 +6,64 @@
     "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .oxfmt*, .prettier*, prettier*, .editorconfig, bun.lock, nub.lock"
   },
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 配置cSpell不检查的目录和文件
+  "cSpell.ignorePaths": [
+    // 1. 依赖与包管理器锁文件
+    "node_modules/**",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    "bun.lockb",
+    "bun.lock",
+
+    // 2. 构建产物与缓存目录
+    "dist/**",
+    "dist-ssr/**",
+    "build/**",
+    ".vite/**",
+    ".nuxt/**",
+    ".output/**",
+    "coverage/**",
+    ".cache/**",
+    ".temp/**",
+    "*.tsbuildinfo",
+
+    // 3. Vue 3 自动生成类型声明文件（unplugin-auto-import / unplugin-vue-components）
+    "auto-imports.d.ts",
+    "components.d.ts",
+    "typed-router.d.ts",
+    "src/auto-imports.d.ts",
+    "src/components.d.ts",
+    "src/typed-router.d.ts",
+
+    // 4. 静态资源、字体与图标文件
+    "public/**",
+    "src/assets/**",
+    "**/*.svg",
+    "**/*.png",
+    "**/*.jpg",
+    "**/*.jpeg",
+    "**/*.gif",
+    "**/*.webp",
+    "**/*.ico",
+    "**/*.woff",
+    "**/*.woff2",
+    "**/*.ttf",
+    "**/*.eot",
+
+    // 5. 压缩文件与 Sourcemap
+    "**/*.min.js",
+    "**/*.min.css",
+    "**/*.map",
+
+    // 6. 环境变量、日志与工具配置目录
+    ".env",
+    ".env.*",
+    "*.log",
+    ".git/**",
+    ".vscode/**",
+    ".idea/**",
+    ".husky/**"
+  ]
 }

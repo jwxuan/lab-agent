@@ -21,11 +21,11 @@
           <el-dropdown>
             <div style="display: flex; align-items: center; cursor: pointer">
               <img src="@/assets/imgs/logo.png" alt="" style="width: 30px; border-radius: 50%" />
-              <div style="margin-left: 3px">管理员</div>
+              <div style="margin-left: 5px">{{ userInfo.name }}</div>
             </div>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
+                <el-dropdown-item @click="handleLogout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -62,8 +62,14 @@
 
 <script setup>
 import router from '@/router'
+import { logout } from '@/utils/auth'
 import { ElMessage } from 'element-plus'
-const logout = () => {
+import { useUser } from '@/utils/user'
+
+const { userInfo } = useUser()
+
+const handleLogout = () => {
+  logout()
   ElMessage.success('退出登录成功')
   router.push('/login')
 }
