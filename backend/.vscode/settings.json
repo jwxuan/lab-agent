@@ -1,7 +1,10 @@
 {
   "cSpell.words": [
     "autoflush",
+    "checkpw",
     "fastapi",
+    "gensalt",
+    "hashpw",
     "onupdate",
     "pymysql",
     "sessionmaker",

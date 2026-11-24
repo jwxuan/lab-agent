@@ -13,7 +13,8 @@
 "settings": {
 	"cSpell.words": [
 		"charliermarsh"
-	]
+	],
+	"python.analysis.extraPaths": ["./backend"],
 },
 "extensions": {
 	"recommendations": [
