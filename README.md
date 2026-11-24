@@ -16,3 +16,9 @@
 |后端|	uv · Python · FastAPI · SQLAlchemy · JWT|
 |数据库|	MySQL|
 |AI|	LangChain · ChromaDB · RAG · Tool Calling · LangGraph · SSE|
+
+## 额外补充内容
+
+- 增加了 `cSpell` 进行单词拼写校验
+- 保留了 `FastAPI` 项目及 `Vue3` 项目一些常用的 `vscode` 配置及拓展插件推荐
+- 使用 `vscode` 的工作区实现前后端项目同时管理，并配置不同的解释器
