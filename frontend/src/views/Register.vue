@@ -3,7 +3,7 @@
     <div class="register-box">
       <h1 style="font-size: 24px; margin-bottom: 30px">欢迎注册实验室预约系统</h1>
 
-      <el-form :model="form" label-width="auto" style="max-width: 600px">
+      <el-form :model="form" label-width="0px" style="width: 100%">
         <el-form-item>
           <el-input
             size="large"
@@ -35,7 +35,8 @@
         <div>
           <el-button size="large" type="primary" style="width: 100%">注 册</el-button>
           <div style="text-align: right; margin-top: 20px">
-            已有账号？请 <a style="color: var(--el-color-primary)" href="/login">登录</a>
+            已有账号？请
+            <router-link style="color: var(--el-color-primary)" to="/login">登录</router-link>
           </div>
         </div>
       </el-form>
